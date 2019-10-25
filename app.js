@@ -15,6 +15,22 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
+// schema
+var blogSchema = new mongoose.Schema({
+    title: String,
+    image: String,
+    body: String,
+    created: { type: Date, default: Date.now }
+})
+
+// model
+var Blog = mongoose.model('Blog', blogSchema);
+
+// index route
+app.get('/posts', function(req, res){
+    res.render('index')
+})
+
 
 
 
