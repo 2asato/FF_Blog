@@ -31,6 +31,11 @@ app.get('/posts', function(req, res){
     res.render('index')
 })
 
+// new route
+app.get('/posts/new', function(req, res){
+    res.render('new')
+})
+
 
 
 
