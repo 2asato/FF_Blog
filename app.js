@@ -28,7 +28,14 @@ var Blog = mongoose.model('Blog', blogSchema);
 
 // index route
 app.get('/blogs', function(req, res){
-    res.render('index')
+    Blog.find({}, function(err, blogs){
+        if(err){
+            console.log('ERRORRRRR!!!!');
+            
+        } else {
+            res.render('index', { blogs: blogs })
+        }
+    })
 })
 
 // new route
