@@ -1,6 +1,23 @@
 <% include ./partials/header %>
 
-<h1>THAT NEW NEW</h1>
+<div class="ui main segment text container">
+    <div class="ui huge header">New Blog Post</div>
+    <form action="/blogs" class="ui form" method="POST">
+        <div class="field required">
+            <label for="">Title</label>
+            <input type="text" name="blog[title]" placeholder="title">
+        </div>
+        <div class="field">
+            <label for="">Image</label>
+            <input type="text" name="blog[image]" placeholder="image">
+        </div>
+        <div class="field required">
+            <label for="">Blog Content</label>
+            <textarea name="blog[body]" id="" cols="30" rows="10"></textarea>
+        </div> 
+        <input type="submit" class="ui red button">
+    </form>    
+</div>
 
 
 <% include ./partials/footer %>
