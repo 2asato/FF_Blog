@@ -56,7 +56,13 @@ app.post('/blogs', function(req, res){
 
 // show route
 app.get('/blogs/:id', function(req, res){
-    res.send('blog blah blah blah')
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err){
+            res.redirect('/blogs')
+        } else {
+            res.render('show', { blog: foundBlog })
+        }
+    })
 })
 
 
