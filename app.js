@@ -71,7 +71,7 @@ app.get('/blogs/:id/edit', function(req, res){
         if(err){
             res.redirect('/blogs')
         } else {
-            res.render('edit', { blog: foundBlog })
+            res.send('edit page')
         }
     })
 })
