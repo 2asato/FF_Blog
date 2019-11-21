@@ -3,7 +3,7 @@ var express = require('express'),
 app = express(),
 bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
-methodOverride = require('method-override'),
+methodOverride = require('method-override')
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
