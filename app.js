@@ -2,7 +2,8 @@
 var express = require('express'),
 app = express(),
 bodyParser = require('body-parser'),
-mongoose = require('mongoose')
+mongoose = require('mongoose'),
+methodOverride = require('method-override'),
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
@@ -14,6 +15,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+app.use(methodOverride('_method'));
 
 // schema
 var blogSchema = new mongoose.Schema({

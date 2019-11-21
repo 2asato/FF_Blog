@@ -2,7 +2,7 @@
 
 <div class="ui main segment text container">
     <div class="ui huge header">Edit <%= blog.title %></div>
-    <form action="/blogs" class="ui form" method="POST">
+    <form action="/blogs/<%= blogs._id %>?_method=PUT" class="ui form" method="POST">
         <div class="field required">
             <label for="">Title</label>
             <input type="text" name="blog[title]" placeholder="title">
