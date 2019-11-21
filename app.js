@@ -3,7 +3,8 @@ var express = require('express'),
 app = express(),
 bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
-methodOverride = require('method-override')
+methodOverride = require('method-override'),
+expressSanitizer = require('express-sanitizer')
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
@@ -16,6 +17,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(expressSanitizer());
 app.use(methodOverride('_method'));
 
 // schema
@@ -28,6 +30,10 @@ var blogSchema = new mongoose.Schema({
 
 // model
 var Blog = mongoose.model('Blog', blogSchema);
+
+app.get('/', function(req, res){
+    res.redirect('/blogs');
+})
 
 // index route
 app.get('/blogs', function(req, res){
@@ -48,6 +54,7 @@ app.get('/blogs/new', function(req, res){
 
 // create route
 app.post('/blogs', function(req, res){
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog, function(err, newBlog){
         if(err){
             res.render('new');

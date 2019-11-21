@@ -3,7 +3,7 @@
 <div class="ui main segment text container">
     <div class="ui huge header">Edit <%= blog.title %></div>
     <form action="/blogs/<%= blog._id %>?_method=PUT" class="ui form" method="POST">
-        <div class="field required">
+        <div class="field">
             <label for="">Title</label>
             <input type="text" name="blog[title]" value="<%= blog.title %>">
         </div>
