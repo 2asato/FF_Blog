@@ -8,13 +8,14 @@ methodOverride = require('method-override')
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
-}))
+}));
 app.use(methodOverride('_method'));
 
 // schema
@@ -74,6 +75,18 @@ app.get('/blogs/:id/edit', function(req, res){
             res.redirect('/blogs')
         } else {
             res.render('edit', { blog: foundBlog })
+        }
+    })
+})
+
+// update route
+app.put('/blogs/:id', function(req, res) {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
+        if(err){
+            res.redirect('/blogs')
+        } else {
+            res.redirect('/blogs' + req.params.id);
         }
     })
 })
