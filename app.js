@@ -109,6 +109,11 @@ app.delete('/blogs/:id', function(req, res) {
     })
 })
 
+// links route
+app.get('/links', function(req, res) {
+    res.send('Links PAGE!!!!')
+})
+
 
 
 
