@@ -28,8 +28,21 @@ var blogSchema = new mongoose.Schema({
     created: { type: Date, default: Date.now }
 })
 
+var linkSchema = new mongoose.Schema({
+    site: String,
+    description: String,
+    image: String,
+    added: { type: Date, default: Date.now }
+})
+
 // model
 var Blog = mongoose.model('Blog', blogSchema);
+var Link = mongoose.model('Link', linkSchema);
+
+var test = new Link;
+test.site = "rotoworld.com/nfl",
+test.description = "blah blah blah",
+test.image = "lafja;fjdaf",
 
 app.get('/', function(req, res){
     res.redirect('/blogs');
