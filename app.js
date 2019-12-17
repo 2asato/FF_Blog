@@ -29,6 +29,7 @@ var blogSchema = new mongoose.Schema({
 })
 
 var linkSchema = new mongoose.Schema({
+    name: String,
     site: String,
     description: String,
     image: String,
@@ -39,10 +40,6 @@ var linkSchema = new mongoose.Schema({
 var Blog = mongoose.model('Blog', blogSchema);
 var Link = mongoose.model('Link', linkSchema);
 
-var test = new Link;
-test.site = "rotoworld.com/nfl",
-test.description = "blah blah blah",
-test.image = "lafja;fjdaf",
 
 app.get('/', function(req, res){
     res.redirect('/blogs');
@@ -124,7 +121,14 @@ app.delete('/blogs/:id', function(req, res) {
 
 // links route
 app.get('/links', function(req, res) {
-    res.render('links')
+    Link.find({}, function(err, links){
+        if(err){
+            console.log('ERRORRRRR!!!!');
+            
+        } else {
+            res.render('links', { links: links });
+        }
+    })
 })
 
 
