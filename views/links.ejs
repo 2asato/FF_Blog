@@ -9,31 +9,20 @@
                         <img src="<%= link.image %>" alt="" srcset="" class="ui avatar image">
                         <div class="content">
                             <div class="header">
-                                <a href=""><%= link.name %>></a>
+                                <a href=""><%= link.name %></a>
+                                <div class="meta right floated">
+                                    <small>Added: <%= link.added.toDateString() %></small>
+                                </div>                
                             </div>
                             <div class="description">
                                 <p><%= link.description %></p>
                             </div>
                             <div class="extra">
-                                <p>Visit site<a href="<%= link.site %>"><i class="right chevron icon"></i></a></p>
+                                <p>Visit site<a href="<%= link.site %>"><i class="right chevron icon red"></i></a></p>
                             </div>
                         </div>
                     </div>    
             <% }) %>
-                <div class="item">
-                    <img src="https://pbs.twimg.com/profile_images/708397005119299584/Wbis9E0t_400x400.jpg" alt="" srcset="" class="ui avatar image">
-                    <div class="content">
-                        <div class="header">
-                            <a href="">Rotoworld</a>
-                        </div>
-                        <div class="description">
-                            <p>Rotoworld Fantasy Football, Fantasy NFL rankings, fantasy Football news, cheat sheets, NFL sleepers and more.</p>
-                        </div>
-                        <div class="extra">
-                            <p>Visit site<a href=""><i class="right chevron icon"></i></a></p>
-                        </div>
-                    </div>
-                </div>
                 <div class="ui divider"></div>
                 <div class="item">
                         <img src="https://pbs.twimg.com/profile_images/1110348970671386625/7vmrwW99.png" alt="" srcset="" class="ui avatar image">
