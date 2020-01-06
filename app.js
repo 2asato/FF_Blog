@@ -131,6 +131,11 @@ app.get('/links', function(req, res) {
     })
 })
 
+// new links route
+app.get('/links/new', function(req, res){
+    res.render('newLinks')
+})
+
 // create links route
 app.post('/links', function(req, res){
     req.body.link.body = req.sanitize(req.body.link.body);
