@@ -12,14 +12,14 @@
         <div class="description">
             <p><%- blog.body %></p>
         </div>
-        <div class="ui divider">
+        <div class="ui horizontal divider">
+                <i class="football ball icon brown"></i>
+        </div>
 
-        </div>    
-    
         <a href="/blogs/<%= blog._id %>/edit" class="ui button fluid black">Edit</a>
-        <div class="ui divider">
-
-        </div>    
+        <div class="ui horizontal divider">
+                <i class="football ball icon brown"></i>
+        </div>
 
         <form id="deleteForm" method="POST" action="/blogs/<%= blog._id %>?_method=DELETE">
             <button class="ui red fluid button">Delete</button>
