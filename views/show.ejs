@@ -2,12 +2,13 @@
 
 <div class="ui main text container segment">
     <div class="ui huge header"><%= blog.title %></div>
+    <div class="ui label basic small top right attached">
+            <span><%= blog.created.toDateString() %></span>
+        </div>
+
     <div class="ui top attached">
         <div class="item">
             <img src="<%= blog.image %>" alt="" class="ui centered rounded image">
-        </div>
-        <div class="content">
-            <span><%= blog.created.toDateString() %></span>
         </div>
         <div class="description">
             <p><%- blog.body %></p>

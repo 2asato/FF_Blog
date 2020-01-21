@@ -5,3 +5,7 @@
 #deleteForm {
     display: inline;
 }
+
+.date-created {
+    font-size: .9rem;
+}
