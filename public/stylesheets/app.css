@@ -6,6 +6,10 @@
     display: inline;
 }
 
-.date-created {
-    font-size: .9rem;
+#index-container, #show-container, #links-container  {
+    border: 1px solid darkgray;
+    border-radius: 0%;
+
 }
+
+
