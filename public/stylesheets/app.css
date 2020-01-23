@@ -10,5 +10,11 @@
     border: 1px solid darkgray !important;
 }
 
+.likes {
+    float: right;
+}
 
+.seperator {
+    clear: right;
+}
 
