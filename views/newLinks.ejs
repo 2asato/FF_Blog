@@ -1,7 +1,8 @@
 <% include ./partials/header %>
 
-<div class="ui main segment text container">
+<div class="ui main segment text container outercolored">
     <div class="ui huge header">Add Link</div>
+    <div class="ui top attached segment">
     <form action="/links" class="ui form" method="POST">
         <div class="field required">
             <label for="">Name</label>
@@ -19,8 +20,12 @@
             <label for="">Image</label>
             <input type="text" name="link[image]" placeholder="image url">
         </div>
+        <div class="ui horizontal divider seperator">
+                <i class="football ball icon brown"></i>
+        </div>
         <input type="submit" class="ui red fluid button">
-    </form>    
+    </form> 
+    </div>   
 </div>
 
 <% include ./partials/footer %>
