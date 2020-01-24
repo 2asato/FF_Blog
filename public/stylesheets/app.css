@@ -1,5 +1,5 @@
 .container.main {
-    margin-top: 7.0em;
+    margin: 7.0em auto;
 }
 
 #deleteForm {
@@ -29,4 +29,3 @@
 #link-desc {
     margin: 5-px auto;
 }
-
