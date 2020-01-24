@@ -18,3 +18,7 @@
     clear: right;
 }
 
+.outercolored {
+    background-color: darkgrey !important;
+}
+
