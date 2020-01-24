@@ -1,5 +1,6 @@
 .container.main {
-    margin: 7.0em auto;
+    margin-top: 7.0em;
+    margin-bottom: 7.0em;
 }
 
 #deleteForm {
@@ -12,6 +13,7 @@
 
 .likes {
     float: right;
+    margin-bottom: 15px;
 }
 
 .seperator {
@@ -27,5 +29,6 @@
 }
 
 #link-desc {
-    margin: 5-px auto;
+    margin: 5px auto;
 }
+
