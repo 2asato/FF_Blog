@@ -1,10 +1,11 @@
 // app config
 var express = require('express'),
-app = express(),
-bodyParser = require('body-parser'),
-mongoose = require('mongoose'),
-methodOverride = require('method-override'),
-expressSanitizer = require('express-sanitizer')
+    app = express(),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    methodOverride = require('method-override'),
+    expressSanitizer = require('express-sanitizer'),
+    Post = require('./models/post')
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
@@ -20,13 +21,6 @@ app.use(bodyParser.urlencoded({
 app.use(expressSanitizer());
 app.use(methodOverride('_method'));
 
-// schema
-var postSchema = new mongoose.Schema({
-    title: String,
-    image: String,
-    body: String,
-    created: { type: Date, default: Date.now }
-})
 
 var linkSchema = new mongoose.Schema({
     name: String,
@@ -36,11 +30,9 @@ var linkSchema = new mongoose.Schema({
     added: { type: Date, default: Date.now }
 })
 
-// model
-var Post = mongoose.model('Post', postSchema);
 var Link = mongoose.model('Link', linkSchema);
 
-
+// landing page
 app.get('/', function(req, res){
     res.redirect('/posts');
 })
