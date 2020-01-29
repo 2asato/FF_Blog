@@ -1,17 +1,17 @@
 <% include ./partials/header %>
 
 <div class="ui main text container segment outercolored" id="show-container">
-    <div class="ui huge header"><%= blog.title %></div>
+    <div class="ui huge header"><%= post.title %></div>
     <div class="ui red label floating">
-            <span><%= blog.created.toDateString() %></span>
+            <span><%= post.created.toDateString() %></span>
         </div>
 
     <div class="ui top attached segment">
         <div class="item">
-            <img src="<%= blog.image %>" alt="" class="ui centered rounded image">
+            <img src="<%= post.image %>" alt="" class="ui centered rounded image">
         </div>
         <div class="description" id="show-body">
-            <p><%- blog.body %></p>
+            <p><%- post.body %></p>
         </div>
         <div class="likes">
             <a class="ui label">
@@ -29,12 +29,12 @@
                 <i class="football ball icon brown"></i>
         </div>
 
-        <a href="/blogs/<%= blog._id %>/edit" class="ui button fluid black">Edit</a>
+        <a href="/posts/<%= post._id %>/edit" class="ui button fluid black">Edit</a>
         <div class="ui horizontal divider">
                 <i class="football ball icon brown"></i>
         </div>
 
-        <form id="deleteForm" method="POST" action="/blogs/<%= blog._id %>?_method=DELETE">
+        <form id="deleteForm" method="POST" action="/posts/<%= post._id %>?_method=DELETE">
             <button class="ui red fluid button">Delete</button>
         </form>
     </div>

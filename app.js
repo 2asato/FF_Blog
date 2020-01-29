@@ -21,7 +21,7 @@ app.use(expressSanitizer());
 app.use(methodOverride('_method'));
 
 // schema
-var blogSchema = new mongoose.Schema({
+var postSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
@@ -37,84 +37,84 @@ var linkSchema = new mongoose.Schema({
 })
 
 // model
-var Blog = mongoose.model('Blog', blogSchema);
+var Post = mongoose.model('Post', postSchema);
 var Link = mongoose.model('Link', linkSchema);
 
 
 app.get('/', function(req, res){
-    res.redirect('/blogs');
+    res.redirect('/posts');
 })
 
 // index route
-app.get('/blogs', function(req, res){
-    Blog.find({}, function(err, blogs){
+app.get('/posts', function(req, res){
+    Post.find({}, function(err, posts){
         if(err){
             console.log('ERRORRRRR!!!!');
             
         } else {
-            res.render('index', { blogs: blogs });
+            res.render('index', { posts: posts });
         }
     })
 })
 
 // new route
-app.get('/blogs/new', function(req, res){
+app.get('/posts/new', function(req, res){
     res.render('new')
 })
 
 // create route
-app.post('/blogs', function(req, res){
-    req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.create(req.body.blog, function(err, newBlog){
+app.post('/posts', function(req, res){
+    req.body.post.body = req.sanitize(req.body.post.body);
+    Post.create(req.body.post, function(err, newPost){
         if(err){
             res.render('new');
         } else {
-            res.redirect('/blogs')
+            res.redirect('/posts')
         }
     })
 })
 
 // show route
-app.get('/blogs/:id', function(req, res){
-    Blog.findById(req.params.id, function(err, foundBlog){
+app.get('/posts/:id', function(req, res){
+    Post.findById(req.params.id, function(err, foundPost){
         if(err){
-            res.redirect('/blogs')
+            res.redirect('/posts')
         } else {
-            res.render('show', { blog: foundBlog })
+            res.render('show', { post: foundPost })
         }
     })
 })
 
 // edit route
-app.get('/blogs/:id/edit', function(req, res) {
-    Blog.findById(req.params.id, function(err, foundBlog) {
+app.get('/posts/:id/edit', function(req, res) {
+    Post.findById(req.params.id, function(err, foundPost) {
         if(err) {
-            res.redirect('/blogs')
+            res.redirect('/posts')
         } else {
-            res.render('edit', { blog: foundBlog })
+            res.render('edit', { post: foundPost })
         }
     })
 })
 
 // update route
-app.put("/blogs/:id", function(req, res) {
-    req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
+app.put("/posts/:id", function(req, res) {
+    req.body.post.body = req.sanitize(req.body.post.body);
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, updatedPost) {
         if(err){
-            res.redirect('/blogs')
+            res.redirect('/posts')
         } else {
-            res.redirect('/blogs/' + req.params.id);
+            res.redirect('/posts/' + req.params.id);
         }
     })
 });
 
 // delete route
-app.delete('/blogs/:id', function(req, res) {
-    Blog.findByIdAndRemove(req.params.id, function(err) {
+app.delete('/posts/:id', function(req, res) {
+    Post.findByIdAndRemove(req.params.id, function(err) {
         if(err) {
-            res.redirect('/blogs')
+            res.redirect('/posts')
         } else {
-            res.redirect('/blogs')
+            res.redirect('/posts')
         }
     })
 })

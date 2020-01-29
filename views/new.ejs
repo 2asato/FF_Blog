@@ -3,18 +3,18 @@
 <div class="ui main segment text container outercolored">
     <div class="ui huge header">New Blog Post</div>
     <div class="ui top attached segment">
-    <form action="/blogs" class="ui form" method="POST">
+    <form action="/posts" class="ui form" method="POST">
         <div class="field required">
             <label for="">Title</label>
-            <input type="text" name="blog[title]" placeholder="title">
+            <input type="text" name="post[title]" placeholder="title">
         </div>
         <div class="field">
             <label for="">Image</label>
-            <input type="text" name="blog[image]" placeholder="image url">
+            <input type="text" name="post[image]" placeholder="image url">
         </div>
         <div class="field required">
             <label for="">Blog Content</label>
-            <textarea name="blog[body]" id="" cols="30" rows="10"></textarea>
+            <textarea name="post[body]" id="" cols="30" rows="10"></textarea>
         </div>
         <div class="ui horizontal divider seperator">
                 <i class="football ball icon brown"></i>

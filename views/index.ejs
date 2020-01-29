@@ -4,21 +4,21 @@
     <div class="ui huge header">FF Blog</div>
     <div class="ui top attached segment">
         <div class="ui items">
-            <% blogs.reverse().forEach(function(blog){ %>
+            <% posts.reverse().forEach(function(post){ %>
                 <div class="item">
                     <div class="image">
-                        <img src="<%= blog.image %>" alt="">
+                        <img src="<%= post.image %>" alt="">
                     </div>
                     <div class="content">
-                        <a href="/blogs/<%= blog._id %>" class="header"><%= blog.title %></a>
+                        <a href="/posts/<%= post._id %>" class="header"><%= post.title %></a>
                         <div class="meta">
-                            <span><%= blog.created.toDateString() %></span>
+                            <span><%= post.created.toDateString() %></span>
                         </div>
                         <div class="description">
-                            <p><%- blog.body.substring(0, 100) %>.......</p>
+                            <p><%- post.body.substring(0, 100) %>.......</p>
                         </div>
                         <div class="extra">
-                            <a href="/blogs/<%= blog._id %>" class="ui floated red button">
+                            <a href="/posts/<%= post._id %>" class="ui floated red button">
                                 Read More
                                 <i class="right chevron icon"></i>
                             </a>
