@@ -6,7 +6,10 @@ var express = require('express'),
     methodOverride = require('method-override'),
     expressSanitizer = require('express-sanitizer'),
     Post = require('./models/post'),
-    Link = require('./models/link')
+    Link = require('./models/link'),
+    seedDB = require('./seeds');
+
+seedDB();
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
