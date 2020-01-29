@@ -38,7 +38,7 @@
             <button class="ui red fluid button">Delete</button>
         </form>
         <% post.comments.forEach(function(comment){ %>
-            <p><strong><%= comment.author %></strong> - <%= comment.text %> </p>
+            <p><strong><%= comment.author %></strong> - <%= comment.text %> <span><%= comment.added.toDateString() %></span> </p>
         <% }) %>
         
     </div>
