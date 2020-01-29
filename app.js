@@ -5,7 +5,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     methodOverride = require('method-override'),
     expressSanitizer = require('express-sanitizer'),
-    Post = require('./models/post')
+    Post = require('./models/post'),
+    Link = require('./models/link')
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
@@ -20,17 +21,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(expressSanitizer());
 app.use(methodOverride('_method'));
-
-
-var linkSchema = new mongoose.Schema({
-    name: String,
-    site: String,
-    description: String,
-    image: String,
-    added: { type: Date, default: Date.now }
-})
-
-var Link = mongoose.model('Link', linkSchema);
 
 // landing page
 app.get('/', function(req, res){
