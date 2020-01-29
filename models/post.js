@@ -12,7 +12,7 @@ var postSchema = new mongoose.Schema({
             ref: 'Comment'
         }
     ]
-})
+});
 
 // model
 module.exports = mongoose.model('Post', postSchema);

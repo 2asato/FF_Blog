@@ -37,6 +37,10 @@
         <form id="deleteForm" method="POST" action="/posts/<%= post._id %>?_method=DELETE">
             <button class="ui red fluid button">Delete</button>
         </form>
+        <% post.comments.forEach(function(comment){ %>
+            <p><strong><%= comment.author %></strong> - <%= comment.text %> </p>
+        <% }) %>
+        
     </div>
 </div>
 

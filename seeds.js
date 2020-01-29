@@ -41,17 +41,18 @@ function seedDB(){
                 } else {
                     console.log('added a post');
                     // create a comment
-                    Comment.create({
-                        text: 'FOOTBALL RULES!!!',
-                        author: 'Odoyle'
-                    }, function(err, comment){
-                        if(err){
-                            console.log(err);
+                    Comment.create(
+                        {
+                            text: 'FOOTBALL RULES!!!',
+                            author: 'Odoyle',
+                        }, function(err, comment){
+                            if(err){
+                                console.log(err);
                             
-                        } else {
-                            post.comments.push(comment);
-                            post.save();
-                            console.log('Created new comment');
+                            } else {
+                                post.comments.push(comment);
+                                post.save();
+                                console.log('Created new comment');
                             
                         }
                     })

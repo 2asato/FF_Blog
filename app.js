@@ -7,7 +7,7 @@ var express = require('express'),
     expressSanitizer = require('express-sanitizer'),
     Post = require('./models/post'),
     Link = require('./models/link'),
-    seedDB = require('./seeds');
+    seedDB = require('./seeds')
 
 seedDB();
 
@@ -42,11 +42,6 @@ app.get('/posts', function(req, res){
     })
 })
 
-// new route
-app.get('/posts/new', function(req, res){
-    res.render('new')
-})
-
 // create route
 app.post('/posts', function(req, res){
     req.body.post.body = req.sanitize(req.body.post.body);
@@ -59,12 +54,21 @@ app.post('/posts', function(req, res){
     })
 })
 
+// new route
+app.get('/posts/new', function(req, res){
+    res.render('new')
+})
+
+
+
 // show route
 app.get('/posts/:id', function(req, res){
-    Post.findById(req.params.id, function(err, foundPost){
+    Post.findById(req.params.id).populate('comments').exec(function(err, foundPost){
         if(err){
+            console.log(err);
             res.redirect('/posts')
         } else {
+            console.log(foundPost);
             res.render('show', { post: foundPost })
         }
     })
