@@ -1,3 +1,5 @@
+
+
 .container.main {
     margin-top: 7.0em;
     margin-bottom: 7.0em;
@@ -8,7 +10,7 @@
 }
 
 .segment {
-    border: 1px solid darkgray !important;
+    border: none !important;
 }
 
 .likes {
@@ -21,7 +23,8 @@
 }
 
 .outercolored {
-    background-color: darkgrey !important;
+    background-color: whitesmoke !important;
+    box-shadow: 5px 10px 5px darkgrey !important;
 }
 
 #show-body {
@@ -34,5 +37,5 @@
 
 #comments-container {
     width: auto;
-    background-color: black !important;
+    background-color: rgb(73, 71, 71) !important;
 }
