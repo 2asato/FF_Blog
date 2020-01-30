@@ -42,3 +42,7 @@
     width: auto;
     background-color: whitesmoke !important;
 }
+
+#show-container {
+    margin-bottom: 70px;
+}
