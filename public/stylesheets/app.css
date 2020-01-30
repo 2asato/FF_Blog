@@ -1,4 +1,7 @@
+#navbar {
+    box-shadow: 5px 10px 5px darkgrey !important;
 
+}
 
 .container.main {
     margin-top: 7.0em;
@@ -24,7 +27,7 @@
 
 .outercolored {
     background-color: whitesmoke !important;
-    box-shadow: 5px 10px 5px darkgrey !important;
+    box-shadow: 0 5px 10px 5px darkgrey !important;
 }
 
 #show-body {
@@ -37,5 +40,5 @@
 
 #comments-container {
     width: auto;
-    background-color: rgb(73, 71, 71) !important;
+    background-color: whitesmoke !important;
 }
