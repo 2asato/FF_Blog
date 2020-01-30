@@ -32,3 +32,7 @@
     margin: 5px auto;
 }
 
+#comments-container {
+    width: auto;
+    background-color: black !important;
+}
