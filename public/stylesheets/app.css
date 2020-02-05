@@ -50,6 +50,6 @@
     background-color: whitesmoke !important;
 }
 
-#show-container {
+#show-container, #index-container {
     margin-bottom: 70px;
 }
