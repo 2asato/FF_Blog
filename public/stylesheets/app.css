@@ -52,7 +52,7 @@
 #comments-container {
     width: auto;
     background-color: whitesmoke !important;
-    box-shadow: 0 10px 20px 10px darkgrey !important;
+    box-shadow: 0 5px 10px 5px darkgrey !important;
 }
 
 #show-container, #index-container {
@@ -60,5 +60,9 @@
 }
 
 .button, .floating {
-    box-shadow: 0 10px 20px 10px darkgrey !important;
+    box-shadow: 0 5px 5px 5px darkgrey !important;
+}
+
+input[type="text"], textarea {
+    box-shadow: 0 5px 5px 5px darkgrey !important;
 }
