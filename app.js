@@ -157,6 +157,31 @@ app.get('/posts/:id/comments/new', function(req, res){
     res.render('comments/new');
 })
 
+// create comment route
+app.post('/posts/:id/comments', function(req, res){
+    // lookup posts
+    Posts.findById(req.params.id, function(err, posts){
+        if(err){
+            console.log(err);
+            res.redirect('/posts')
+        } else {
+            // create new comment
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                    
+                } else {
+                    // connect new comment to posts
+                    posts.comments.push(comment);
+                    posts.save();
+                    // redirect to posts show page
+                    res.redirect('/posts' + post_id);
+                }
+            })
+        }
+    })
+})
+
 
 
 
