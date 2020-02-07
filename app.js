@@ -30,6 +30,11 @@ app.get('/', function(req, res){
     res.redirect('/posts');
 })
 
+
+// ==================
+// BLOG POSTS
+// ==================
+
 // index route
 app.get('/posts', function(req, res){
     Post.find({}, function(err, posts){
@@ -37,7 +42,7 @@ app.get('/posts', function(req, res){
             console.log('ERRORRRRR!!!!');
             
         } else {
-            res.render('index', { posts: posts });
+            res.render('posts/index', { posts: posts });
         }
     })
 })
@@ -47,7 +52,7 @@ app.post('/posts', function(req, res){
     req.body.post.body = req.sanitize(req.body.post.body);
     Post.create(req.body.post, function(err, newPost){
         if(err){
-            res.render('new');
+            res.render('posts/new');
         } else {
             res.redirect('/posts')
         }
@@ -56,7 +61,7 @@ app.post('/posts', function(req, res){
 
 // new route
 app.get('/posts/new', function(req, res){
-    res.render('new')
+    res.render('posts/new')
 })
 
 
@@ -69,7 +74,7 @@ app.get('/posts/:id', function(req, res){
             res.redirect('/posts')
         } else {
             console.log(foundPost);
-            res.render('show', { post: foundPost })
+            res.render('posts/show', { post: foundPost })
         }
     })
 })
@@ -80,7 +85,7 @@ app.get('/posts/:id/edit', function(req, res) {
         if(err) {
             res.redirect('/posts')
         } else {
-            res.render('edit', { post: foundPost })
+            res.render('posts/edit', { post: foundPost })
         }
     })
 })
@@ -108,6 +113,11 @@ app.delete('/posts/:id', function(req, res) {
     })
 })
 
+
+// ========================
+// LINKS
+// ========================
+
 // links route
 app.get('/links', function(req, res) {
     Link.find({}, function(err, links){
@@ -115,14 +125,14 @@ app.get('/links', function(req, res) {
             console.log('ERRORRRRR!!!!');
             
         } else {
-            res.render('links', { links: links });
+            res.render('links/show', { links: links });
         }
     })
 })
 
 // new links route
 app.get('/links/new', function(req, res){
-    res.render('newLinks')
+    res.render('links/new')
 })
 
 // create links route
@@ -130,11 +140,21 @@ app.post('/links', function(req, res){
     req.body.link.body = req.sanitize(req.body.link.body);
     Link.create(req.body.link, function(err, newLink){
         if(err){
-            res.render('newLink');
+            res.render('links/new');
         } else {
             res.redirect('/links')
         }
     })
+})
+
+
+// ================
+// COMMENTS
+// ================
+
+// new comment route
+app.get('/posts/:id/comments', function(req, res){
+    res.render();
 })
 
 
