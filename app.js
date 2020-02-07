@@ -153,8 +153,8 @@ app.post('/links', function(req, res){
 // ================
 
 // new comment route
-app.get('/posts/:id/comments', function(req, res){
-    res.render();
+app.get('/posts/:id/comments/new', function(req, res){
+    res.render('comments/new');
 })
 
 
