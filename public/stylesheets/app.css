@@ -23,9 +23,13 @@
     border: none !important;
 }
 
-.likes {
+.likes-div {
     float: right;
     margin-bottom: 15px;
+}
+
+.likes {
+    box-shadow: 0 5px 10px 5px darkgrey !important;
 }
 
 .seperator {
