@@ -55,6 +55,6 @@
     margin-bottom: 70px;
 }
 
-.button {
+.button, .floating {
     box-shadow: 0 10px 20px 10px darkgrey !important;
 }
