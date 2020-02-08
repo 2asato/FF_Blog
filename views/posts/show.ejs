@@ -13,33 +13,34 @@
         <div class="description" id="show-body">
             <p><%- post.body %></p>
         </div>
+        <div class="edit-delete">
+                <a href="/posts/<%= post._id %>/edit" class="ui button basic tiny">Edit</a>
+                <span>
+                        <form id="deleteForm" method="POST" action="/posts/<%= post._id %>?_method=DELETE">
+                            <button class="ui basic button tiny">Delete</button>
+                        </form>
+                
+                </span>
+        
+        </div>
+
         <div class="likes-div">
-            <a class="ui label likes">
-                Likes
-                <i class="thumbs up icon"></i>
-            </a>
             
-            <a class="ui label likes">
+            <a class="ui basic button likes right floated tiny">
                 Dislikes
                 <i class="thumbs down icon"></i>
             </a>
+            <a class="ui basic button right floated likes tiny">
+                    Likes
+                    <i class="thumbs up icon"></i>
+                </a>
+    
             
         </div>
-        <div class="ui horizontal divider seperator">
+        <div class="ui horizontal divider seperator" id="show-divider">
                 <i class="football ball icon brown"></i>
         </div>
-
-        <a href="/posts/<%= post._id %>/edit" class="ui button fluid black">Edit</a>
-        <div class="ui horizontal divider">
-                <i class="football ball icon brown"></i>
-        </div>
-
-        <form id="deleteForm" method="POST" action="/posts/<%= post._id %>?_method=DELETE">
-            <button class="ui red fluid button">Delete</button>
-        </form>
-        <div class="ui horizontal divider">
-                <i class="football ball icon brown"></i>
-        </div>
+            
         <div class="ui text container segment" id="comments-container">
 
 
