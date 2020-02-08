@@ -14,10 +14,10 @@
             <p><%- post.body %></p>
         </div>
         <div class="edit-delete">
-                <a href="/posts/<%= post._id %>/edit" class="ui button basic tiny">Edit</a>
+                <a href="/posts/<%= post._id %>/edit" class="ui button green tiny">Edit &nbsp&nbsp<i class="edit icon"></i></a>
                 <span>
                         <form id="deleteForm" method="POST" action="/posts/<%= post._id %>?_method=DELETE">
-                            <button class="ui basic button tiny">Delete</button>
+                            <button class="ui red button tiny">Delete &nbsp&nbsp <i class="trash alternate outline icon"></i></button>
                         </form>
                 
                 </span>
@@ -26,14 +26,16 @@
 
         <div class="likes-div">
             
-            <a class="ui basic button likes right floated tiny">
-                Dislikes
-                <i class="thumbs down icon"></i>
-            </a>
-            <a class="ui basic button right floated likes tiny">
-                    Likes
-                    <i class="thumbs up icon"></i>
+            <a class="ui green button likes tiny">
+                    Like &nbsp&nbsp
+                    <i class="thumbs up outline icon"></i>
                 </a>
+
+                <a class="ui red button likes tiny">
+                        Dislike &nbsp&nbsp
+                        <i class="thumbs down outline icon"></i>
+                    </a>
+        
     
             
         </div>

@@ -10,7 +10,7 @@
 
 }
 
-.container.main {
+.container.main, #links-container {
     margin-top: 7.0em;
     margin-bottom: 7.0em;
 }
@@ -30,6 +30,7 @@
 
 .likes-div {
     float: left;
+    color: red;
 }
 
 #show-divider {
@@ -63,13 +64,32 @@
     margin-bottom: 70px;
 }
 
-.button, .floating {
+.button {
     box-shadow: 0 5px 5px 5px darkgrey !important;
 }
 
 input[type="text"], textarea {
     box-shadow: 0 5px 5px 5px darkgrey !important;
 }
+
+.edit-delete > .button:not(:last-child), .likes-div > .button:not(:last-child) {
+    margin-right: 10px;
+}
+
+input[type="submit"] {
+    width: 40%;
+}
+
+.avatar {
+    margin-bottom: 15px !important;
+}
+
+
+
+
+
+
+
 
 
 

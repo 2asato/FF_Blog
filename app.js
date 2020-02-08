@@ -7,6 +7,7 @@ var express = require('express'),
     expressSanitizer = require('express-sanitizer'),
     Post = require('./models/post'),
     Link = require('./models/link'),
+    Comment = require('./models/comment')
     seedDB = require('./seeds')
 
 seedDB();
@@ -183,7 +184,7 @@ app.post('/posts/:id/comments', function(req, res){
                     post.comments.push(comment);
                     post.save();
                     // redirect to posts show page
-                    res.redirect('/posts' + post._id);
+                    res.redirect('/posts/' + post._id);
                 }
             })
         }
