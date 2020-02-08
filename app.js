@@ -154,13 +154,21 @@ app.post('/links', function(req, res){
 
 // new comment route
 app.get('/posts/:id/comments/new', function(req, res){
-    res.render('comments/new');
+    // find post by id
+    Post.findById(req.params.id, function(err, post){
+        if(err){
+            console.log(err);
+            
+        } else {
+            res.render('comments/new', {post: post});
+        }
+    })
 })
 
 // create comment route
 app.post('/posts/:id/comments', function(req, res){
     // lookup posts
-    Posts.findById(req.params.id, function(err, posts){
+    Post.findById(req.params.id, function(err, post){
         if(err){
             console.log(err);
             res.redirect('/posts')
@@ -172,10 +180,10 @@ app.post('/posts/:id/comments', function(req, res){
                     
                 } else {
                     // connect new comment to posts
-                    posts.comments.push(comment);
-                    posts.save();
+                    post.comments.push(comment);
+                    post.save();
                     // redirect to posts show page
-                    res.redirect('/posts' + post_id);
+                    res.redirect('/posts' + post._id);
                 }
             })
         }

@@ -1,6 +1,23 @@
 <% include ../partials/header %>
 
-
-
+<div class="ui main segment text container outercolored">
+    <div class="ui huge header">Add Comment To <%= post.title %></div>
+    <div class="ui top attached segment">
+    <form action="/posts/<%= post._id %>/comments" class="ui form" method="POST">
+        <div class="field required">
+            <label for="">Name</label>
+            <input type="text" name="comment[author]" placeholder="name">
+        </div>
+        <div class="field required">
+            <label for="">Comment</label>
+            <textarea name="comment[text]" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="ui horizontal divider seperator">
+                <i class="football ball icon brown"></i>
+        </div>
+        <input type="submit" class="ui red fluid button">
+    </form> 
+    </div>   
+</div>
 
 <% include ../partials/footer %>
