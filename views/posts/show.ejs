@@ -45,9 +45,12 @@
             
         <div class="ui text container segment" id="comments-container">
 
-
-            <h3 class="ui header white">Comments</h3>
-            <div class="ui top attached segment">
+            <div class="comment-header">
+                    <h3 class="ui header white">Comments</h3>
+                    <span class="ui basic button tiny" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
+        
+            </div>
+            <div class="ui top attached segment" id="view-comments">
                 <div class="item">
 
                     <% post.comments.forEach(function(comment){ %>

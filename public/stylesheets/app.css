@@ -84,7 +84,17 @@ input[type="submit"] {
     margin-bottom: 15px !important;
 }
 
+.comment-header h3 {
+    float: left;
+}
 
+#comment-link {
+    float: right;
+}
+
+.comment-header {
+    margin-bottom: 60px;
+}
 
 
 
