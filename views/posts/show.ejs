@@ -2,7 +2,7 @@
 
 <div class="ui main container text segment outercolored" id="show-container">
     <div class="ui huge header"><%= post.title %></div>
-    <div class="ui red label floating">
+    <div class="ui green label floating">
             <span><%= post.created.toDateString() %></span>
         </div>
 
@@ -17,7 +17,7 @@
                 <a href="/posts/<%= post._id %>/edit" class="ui button green tiny">Edit &nbsp&nbsp<i class="edit icon"></i></a>
                 <span>
                         <form id="deleteForm" method="POST" action="/posts/<%= post._id %>?_method=DELETE">
-                            <button class="ui red button tiny">Delete &nbsp&nbsp <i class="trash alternate outline icon"></i></button>
+                            <button class="ui button tiny">Delete &nbsp&nbsp <i class="trash alternate outline icon"></i></button>
                         </form>
                 
                 </span>
@@ -31,7 +31,7 @@
                     <i class="thumbs up outline icon"></i>
                 </a>
 
-                <a class="ui red button likes tiny">
+                <a class="ui button likes tiny">
                         Dislike &nbsp&nbsp
                         <i class="thumbs down outline icon"></i>
                     </a>
@@ -47,7 +47,7 @@
 
             <div class="comment-header">
                     <h3 class="ui header white">Comments</h3>
-                    <span class="ui basic button tiny" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
+                    <span class="ui green button tiny" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
         
             </div>
             <div class="ui top attached segment" id="view-comments">

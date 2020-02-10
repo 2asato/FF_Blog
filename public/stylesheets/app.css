@@ -92,6 +92,10 @@ input[type="submit"] {
     float: right;
 }
 
+#comment-link a {
+    color: white;
+}
+
 .comment-header {
     margin-bottom: 60px;
 }
