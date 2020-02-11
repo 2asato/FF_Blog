@@ -1,4 +1,6 @@
-
+body {
+    background-color: whitesmoke;
+}
 
 #navbar {
     box-shadow: 5px 10px 5px darkgrey !important;
