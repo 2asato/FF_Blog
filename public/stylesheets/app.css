@@ -58,8 +58,12 @@ body {
 
 #comments-container {
     width: auto;
-    background-color: whitesmoke !important;
+    /* background-color: whitesmoke !important; */
     box-shadow: 0 5px 5px 5px darkgrey !important;
+}
+
+#view-comments {
+    background-color: whitesmoke;
 }
 
 #show-container, #index-container {
@@ -69,6 +73,12 @@ body {
 .button {
     box-shadow: 0 5px 5px 5px darkgrey !important;
 }
+
+#rm-button {
+    box-shadow: 0 5px 5px 5px darkgrey !important;
+    background-color: white;
+}
+
 
 input[type="text"], textarea {
     box-shadow: 0 5px 5px 5px darkgrey !important;
