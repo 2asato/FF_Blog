@@ -81,7 +81,7 @@ body {
 
 
 input[type="text"], textarea {
-    box-shadow: 0 5px 5px 5px darkgrey !important;
+    box-shadow: 0 5px 5px 0 darkgrey !important;
 }
 
 .edit-delete > .button:not(:last-child), .likes-div > .button:not(:last-child) {
@@ -105,7 +105,7 @@ input[type="submit"] {
 }
 
 #comment-link a {
-    color: white;
+    /* color: white; */
 }
 
 .comment-header {
@@ -119,6 +119,7 @@ input[type="submit"] {
 .clear {
     clear: both;
 }
+
 
 
 
