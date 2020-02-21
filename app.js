@@ -29,7 +29,17 @@ app.use(expressSanitizer());
 app.use(methodOverride('_method'));
 
 // config passport
+app.use(require('express-session')({
+    secret: 'Leo loves Buster the bus',
+    resave: false,
+    saveUninitialized: false 
+}))
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // landing page
 app.get('/', function(req, res){
