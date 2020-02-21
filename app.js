@@ -5,6 +5,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     methodOverride = require('method-override'),
     expressSanitizer = require('express-sanitizer'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local'),
     Post = require('./models/post'),
     Link = require('./models/link'),
     Comment = require('./models/comment')
@@ -25,6 +27,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(expressSanitizer());
 app.use(methodOverride('_method'));
+
+// config passport
+
 
 // landing page
 app.get('/', function(req, res){
