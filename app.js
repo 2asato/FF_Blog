@@ -37,9 +37,9 @@ app.use(require('express-session')({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 // landing page
 app.get('/', function(req, res){
@@ -204,6 +204,15 @@ app.post('/posts/:id/comments', function(req, res){
             })
         }
     })
+})
+
+// =============
+// AUTH ROUTES
+// =============
+
+// show register form
+app.get('/register', function(req, res){
+    res.send('Soon to be register page');
 })
 
 
