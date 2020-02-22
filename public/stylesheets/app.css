@@ -7,6 +7,10 @@ body {
     font-family: 'Atletico', slab-serif !important;
 }
 
+.right {
+    padding-right: 20px;
+}
+
 .header {
     font-family: 'Atletico', slab-serif !important;
 
