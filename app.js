@@ -211,12 +211,29 @@ app.post('/posts/:id/comments', function(req, res){
 // AUTH ROUTES
 // =============
 
-// show register form
-app.get('/register', function(req, res){
-    res.render('register');
+// show signup form
+app.get('/signup', function(req, res){
+    res.render('signup');
 })
 
+// handle signup logic
+app.post('/signup', function(req, res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render('signup')
+        }
+        passport.authenticate('local')(req, res, function(){
+            res.redirect('/posts')
+        })
+    })
+})
 
+// show login form
+app.get('/signin', function(req, res){
+    res.render('signin')
+})
 
 
 
