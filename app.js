@@ -230,9 +230,17 @@ app.post('/signup', function(req, res){
     })
 })
 
-// show login form
+// show signin form
 app.get('/signin', function(req, res){
     res.render('signin')
+})
+
+// handle signin logic
+app.post('/signin', passport.authenticate('local',
+    {
+        successRedirect: '/posts',
+        failureRedirect: '/signup'
+    }), function(req, res){
 })
 
 
