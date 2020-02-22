@@ -77,7 +77,7 @@ app.post('/posts', function(req, res){
 })
 
 // new route
-app.get('/posts/new', function(req, res){
+app.get('/posts/new', isSignedIn, function(req, res){
     res.render('posts/new')
 })
 
@@ -97,7 +97,7 @@ app.get('/posts/:id', function(req, res){
 })
 
 // edit route
-app.get('/posts/:id/edit', function(req, res) {
+app.get('/posts/:id/edit', isSignedIn, function(req, res) {
     Post.findById(req.params.id, function(err, foundPost) {
         if(err) {
             res.redirect('/posts')
@@ -108,7 +108,7 @@ app.get('/posts/:id/edit', function(req, res) {
 })
 
 // update route
-app.put("/posts/:id", function(req, res) {
+app.put("/posts/:id", isSignedIn, function(req, res) {
     req.body.post.body = req.sanitize(req.body.post.body);
     Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, updatedPost) {
         if(err){
@@ -120,7 +120,7 @@ app.put("/posts/:id", function(req, res) {
 });
 
 // delete route
-app.delete('/posts/:id', function(req, res) {
+app.delete('/posts/:id', isSignedIn, function(req, res) {
     Post.findByIdAndRemove(req.params.id, function(err) {
         if(err) {
             res.redirect('/posts')
@@ -148,7 +148,7 @@ app.get('/links', function(req, res) {
 })
 
 // new links route
-app.get('/links/new', function(req, res){
+app.get('/links/new', isSignedIn, function(req, res){
     res.render('links/new')
 })
 
@@ -170,7 +170,7 @@ app.post('/links', function(req, res){
 // ================
 
 // new comment route
-app.get('/posts/:id/comments/new', function(req, res){
+app.get('/posts/:id/comments/new', isSignedIn, function(req, res){
     // find post by id
     Post.findById(req.params.id, function(err, post){
         if(err){
@@ -183,7 +183,7 @@ app.get('/posts/:id/comments/new', function(req, res){
 })
 
 // create comment route
-app.post('/posts/:id/comments', function(req, res){
+app.post('/posts/:id/comments', isSignedIn, function(req, res){
     // lookup posts
     Post.findById(req.params.id, function(err, post){
         if(err){
@@ -244,11 +244,18 @@ app.post('/signin', passport.authenticate('local',
 })
 
 // sign out route
-app.get('signout', function(req, res){
+app.get('/signout', function(req, res){
     req.logOut();
     res.redirect('/posts');
 })
 
+// checks if user is signed in
+function isSignedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/signin');
+}
 
 
 
