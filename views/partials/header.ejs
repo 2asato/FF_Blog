@@ -9,14 +9,22 @@
             <div class="ui fixed menu" id="navbar">
                 <div class="ui container">
                     <div class="header item"><i class="football ball icon"></i>FF Blog</div>
+                    <% if(!currentUser){ %>
+
                     <a href="/posts" class="item">Home</a>
-                    <a href="/posts/new" class="item">New Post</a>
                     <a href="/links" class="item">Links</a>
-                </div>
+                    <% } else { %>
+                        <a href="/posts/new" class="item">New Post</a>
+                    <% } %>
+                    </div>
                 <div class="right menu">
-                    <a href="/signup" class="ui item">Sign Up</a>
-                    <a href="/signin" class="ui item">Sign In</a>
-                    <a href="/signout" class="ui item">Sign Out</a>
+                    <% if(!currentUser){ %>
+                        <a href="/signin" class="ui item">Sign In</a>
+                        <a href="/signup" class="ui item">Sign Up</a>
+                    <% } else { %>
+                        <a href="">Signed In As <%= currentUser.username %></a>
+                        <a href="/signout" class="ui item">Sign Out</a>
+                    <% } %>
                   </div>
     
             </div>

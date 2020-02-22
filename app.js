@@ -42,6 +42,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// use currentUser on all pages
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+})
+
 // landing page
 app.get('/', function(req, res){
     res.redirect('/posts');
