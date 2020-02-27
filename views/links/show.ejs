@@ -25,9 +25,12 @@
                                 <i class="football ball icon brown"></i>
                         </div>
         
-                    </div>                <% }) %>
-            <a href="links/new" class="ui button fluid">Add New Link</a>
+                    </div>               
+            <% }) %>
 
+            <% if(currentUser){ %>
+            <a href="links/new" class="ui button fluid">Add New Link</a>
+            <% } %>
         </div>
         <a href="/posts" class="ui button mini center go-back">
             Go Back 
