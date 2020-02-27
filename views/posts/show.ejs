@@ -13,6 +13,7 @@
         <div class="description" id="show-body">
             <p><%- post.body %></p>
         </div>
+        <% if(currentUser){ %>
         <div class="edit-delete">
                 <a href="/posts/<%= post._id %>/edit" class="ui button colored-button tiny">Edit &nbsp&nbsp<i class="edit icon"></i></a>
                 <span>
@@ -23,7 +24,6 @@
                 </span>
         
         </div>
-
         <div class="likes-div">
             
             <a class="ui colored-button button likes tiny">
@@ -39,6 +39,8 @@
     
             
         </div>
+        <% } %>
+
         <div class="ui horizontal divider seperator" id="show-divider">
                 <i class="football ball icon brown"></i>
         </div>

@@ -202,6 +202,9 @@ app.post('/posts/:id/comments', isSignedIn, function(req, res){
                     console.log(err);
                     
                 } else {
+                    comment.author.id = req.user._id;
+                    comment.author.username = req.user.username;
+                    comment.save();
                     // connect new comment to posts
                     post.comments.push(comment);
                     post.save();
