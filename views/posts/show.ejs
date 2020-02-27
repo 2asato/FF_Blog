@@ -49,15 +49,18 @@
 
             <div class="comment-header">
                     <h3 class="ui header white">Comments</h3>
+                    <% if(currentUser){ %>
+
                     <span class="ui colored-button button tiny" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
-        
+                    <% } %>
+
             </div>
             <div class="ui top attached segment" id="view-comments">
                 <div class="item">
 
                     <% post.comments.forEach(function(comment){ %>
                         <p><%= comment.text %></p>
-                        <p><strong><%= comment.author %></strong> -  <span><%= comment.added.toDateString() %></span> </p>
+                        <p><strong><%= comment.author.username %></strong> -  <span><%= comment.added.toDateString() %></span> </p>
                         <div class="ui horizontal divider seperator" id="show-divider">
                                 <i class="comment outline icon"></i>                        </div>
                 
