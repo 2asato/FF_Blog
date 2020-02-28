@@ -9,13 +9,10 @@
             <div class="ui fixed menu" id="navbar">
                 <div class="ui container">
                     <div class="header item"><i class="football ball icon"></i>FF Blog</div>
-                    <% if(!currentUser){ %>
 
                     <a href="/posts" class="item">Home</a>
+                    <a href="/posts/new" class="item">New Post</a>
                     <a href="/links" class="item">Links</a>
-                    <% } else { %>
-                        <a href="/posts/new" class="item">New Post</a>
-                    <% } %>
                     </div>
                 <div class="right menu">
                     <% if(!currentUser){ %>

@@ -71,7 +71,7 @@ app.get('/posts', function(req, res){
 })
 
 // create route
-app.post('/posts', function(req, res){
+app.post('/posts', isSignedIn, function(req, res){
     req.body.post.body = req.sanitize(req.body.post.body);
     Post.create(req.body.post, function(err, newPost){
         if(err){
