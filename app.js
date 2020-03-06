@@ -70,13 +70,17 @@ app.get('/posts', function(req, res){
     })
 })
 
+// user to post association
+// need to figure this out!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // create route
 app.post('/posts', isSignedIn, function(req, res){
+    
     req.body.post.body = req.sanitize(req.body.post.body);
+    
     Post.create(req.body.post, function(err, newPost){
         if(err){
             res.render('posts/new');
-        } else {
+        } else {               
             res.redirect('/posts')
         }
     })
