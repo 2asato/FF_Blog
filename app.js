@@ -75,12 +75,19 @@ app.get('/posts', function(req, res){
 // create route
 app.post('/posts', isSignedIn, function(req, res){
     
-    req.body.post.body = req.sanitize(req.body.post.body);
-    
+    req.body.post.body = req.sanitize(req.body.post.body);    
     Post.create(req.body.post, function(err, newPost){
         if(err){
             res.render('posts/new');
-        } else {               
+        } else {   
+            // add username and id to post
+            // console.log('New post username will be : ' + req.user.username);
+            newPost.author.username = req.user.username;
+            newPost.author.id = req.user._id;
+            // save post
+            newPost.save();
+            console.log(newPost);
+            
             res.redirect('/posts')
         }
     })
@@ -262,6 +269,7 @@ app.get('/signout', function(req, res){
     res.redirect('/posts');
 })
 
+// middleware
 // checks if user is signed in
 function isSignedIn(req, res, next){
     if(req.isAuthenticated()){
