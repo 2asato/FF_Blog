@@ -114,7 +114,7 @@ app.get('/posts/:id', function(req, res){
 })
 
 // edit route
-app.get('/posts/:id/edit', isSignedIn, function(req, res) {
+app.get('/posts/:id/edit', checkPostOwnership, function(req, res) {
     Post.findById(req.params.id, function(err, foundPost) {
         if(err) {
             res.redirect('/posts')
@@ -276,6 +276,25 @@ function isSignedIn(req, res, next){
         return next();
     }
     res.redirect('/signin');
+}
+
+// checks if user/post are associated
+function checkPostOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Post.findById(req.params.id, function(err, foundPost){
+            if(err){
+                res.redirect('back')
+            } else {
+                if(foundPost.author.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect('back');
+                }
+            }
+        });
+    } else {
+        res.redirect('back');
+    }
 }
 
 
