@@ -16,7 +16,7 @@
                 <p>Submitted By <%= post.author.username %></p>
             </em>
         </div>
-        <% if(currentUser){ %>
+        <% if(currentUser && post.author.id.equals(currentUser._id)){ %>
         <div class="edit-delete">
                 <a href="/posts/<%= post._id %>/edit" class="ui button colored-button tiny">Edit &nbsp&nbsp<i class="edit icon"></i></a>
                 <span>
