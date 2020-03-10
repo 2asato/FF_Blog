@@ -125,7 +125,7 @@ app.get('/posts/:id/edit', checkPostOwnership, function(req, res) {
 })
 
 // update route
-app.put("/posts/:id", isSignedIn, function(req, res) {
+app.put("/posts/:id", checkPostOwnership, function(req, res) {
     req.body.post.body = req.sanitize(req.body.post.body);
     Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, updatedPost) {
         if(err){
@@ -137,7 +137,7 @@ app.put("/posts/:id", isSignedIn, function(req, res) {
 });
 
 // delete route
-app.delete('/posts/:id', isSignedIn, function(req, res) {
+app.delete('/posts/:id', checkPostOwnership, function(req, res) {
     Post.findByIdAndRemove(req.params.id, function(err) {
         if(err) {
             res.redirect('/posts')
