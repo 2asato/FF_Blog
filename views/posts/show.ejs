@@ -18,10 +18,10 @@
         </div>
         <% if(currentUser && post.author.id.equals(currentUser._id)){ %>
         <div class="edit-delete">
-                <a href="/posts/<%= post._id %>/edit" class="ui button colored-button tiny">Edit &nbsp&nbsp<i class="edit icon"></i></a>
+                <a href="/posts/<%= post._id %>/edit" class="ui button colored-button mini compact">Edit &nbsp&nbsp<i class="edit icon"></i></a>
                 <span>
                         <form id="deleteForm" method="POST" action="/posts/<%= post._id %>?_method=DELETE">
-                            <button class="ui button tiny">Delete &nbsp&nbsp <i class="trash alternate outline icon"></i></button>
+                            <button class="ui button mini compact">Delete &nbsp&nbsp <i class="trash alternate outline icon"></i></button>
                         </form>
                 
                 </span>
@@ -29,12 +29,12 @@
         </div>
         <div class="likes-div">
             
-            <a class="ui colored-button button likes tiny">
+            <a class="ui colored-button button likes mini compact">
                     Like &nbsp&nbsp
                     <i class="thumbs up outline icon"></i>
                 </a>
 
-                <a class="ui button likes tiny">
+                <a class="ui button likes mini compact">
                         Dislike &nbsp&nbsp
                         <i class="thumbs down outline icon"></i>
                     </a>
@@ -53,7 +53,7 @@
             <div class="comment-header">
                     <h3 class="ui header white">Comments</h3>
 
-                    <span class="ui colored-button button tiny" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
+                    <span class="ui colored-button button mini compact" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
 
             </div>
             <div class="ui top attached segment" id="view-comments">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-                <a href="/posts" class="ui button mini center go-back">
+                <a href="/posts" class="ui button mini compact go-back">
                     Go Back 
                     <i class="arrow left icon"></i>
                 </a>

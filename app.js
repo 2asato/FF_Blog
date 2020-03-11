@@ -70,8 +70,6 @@ app.get('/posts', function(req, res){
     })
 })
 
-// user to post association
-// need to figure this out!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // create route
 app.post('/posts', isSignedIn, function(req, res){
     
