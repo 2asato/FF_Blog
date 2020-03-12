@@ -3,6 +3,7 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    flash = require('connect-flash'),
     methodOverride = require('method-override'),
     expressSanitizer = require('express-sanitizer'),
     passport = require('passport'),
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(expressSanitizer());
 app.use(methodOverride('_method'));
+app.use(flash());
 
 // config passport
 app.use(require('express-session')({
@@ -45,6 +47,8 @@ passport.deserializeUser(User.deserializeUser());
 // use currentUser on all pages
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 })
 
@@ -101,8 +105,9 @@ app.get('/posts/new', isSignedIn, function(req, res){
 // show route
 app.get('/posts/:id', function(req, res){
     Post.findById(req.params.id).populate('comments').exec(function(err, foundPost){
-        if(err){
-            console.log(err);
+        // checks for error and post with exact parameters
+        if(err || !foundPost){
+            req.flash('error', 'Post not found')
             res.redirect('/posts')
         } else {
             console.log(foundPost);
@@ -208,6 +213,8 @@ app.post('/posts/:id/comments', isSignedIn, function(req, res){
             // create new comment
             Comment.create(req.body.comment, function(err, comment){
                 if(err){
+                    req.flash('error', 'Something went wrong')
+
                     console.log(err);
                     
                 } else {
@@ -217,6 +224,8 @@ app.post('/posts/:id/comments', isSignedIn, function(req, res){
                     // connect new comment to posts
                     post.comments.push(comment);
                     post.save();
+                    req.flash('success', 'Successfully added comment')
+
                     // redirect to posts show page
                     res.redirect('/posts/' + post._id);
                 }
@@ -227,12 +236,18 @@ app.post('/posts/:id/comments', isSignedIn, function(req, res){
 
 // comments edit route
 app.get('/posts/:id/comments/:comment_id/edit', checkCommentOwnership, function(req, res){
-    Comment.findById(req.params.comment_id, function(err, foundComment){
-        if(err){
-            res.redirect('back')
-        } else {
-            res.render('comments/edit', { post_id: req.params.id, comment: foundComment })
+    Post.findById(req.params.id, function(err, foundPost){
+        if(err || !foundPost){
+            req.flash('error', 'No post found')
+            return res.redirect('back');
         }
+        Comment.findById(req.params.comment_id, function(err, foundComment){
+            if(err){
+                res.redirect('back')
+            } else {
+                res.render('comments/edit', { post_id: req.params.id, comment: foundComment })
+            }
+        })
     })
 })
 
@@ -253,6 +268,7 @@ app.delete('/posts/:id/comments/:comment_id', checkCommentOwnership, function(re
         if(err){
             res.redirect('back')
         } else {
+            req.flash('success', 'Comment deleted')
             res.redirect('/posts/' + req.params.id)
         }
     })
@@ -273,11 +289,13 @@ app.post('/signup', function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            console.log(err);
-            return res.render('signup')
+            req.flash('error', err.message);
+            console.log('this is what im looking for ' + err.message);
+            return res.redirect('signup');
         }
         passport.authenticate('local')(req, res, function(){
-            res.redirect('/posts')
+            req.flash('success', 'Welcome to FF Blog ' + user.username);
+            res.redirect('/posts');
         })
     })
 })
@@ -298,6 +316,7 @@ app.post('/signin', passport.authenticate('local',
 // sign out route
 app.get('/signout', function(req, res){
     req.logOut();
+    req.flash('success', 'Logged you out');
     res.redirect('/posts');
 })
 
@@ -307,6 +326,7 @@ function isSignedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash('error', 'You need to be logged in to do that');
     res.redirect('/signin');
 }
 
@@ -314,17 +334,21 @@ function isSignedIn(req, res, next){
 function checkPostOwnership(req, res, next){
     if(req.isAuthenticated()){
         Post.findById(req.params.id, function(err, foundPost){
-            if(err){
+            // checks for error and foundPost with exact parameters
+            if(err || !foundPost){
+                req.flash('error', 'Post not found')
                 res.redirect('back')
             } else {
                 if(foundPost.author.id.equals(req.user._id)){
                     next();
                 } else {
+                    req.flash('error', 'You do not have permission to do that')
                     res.redirect('back');
                 }
             }
         });
     } else {
+        req.flash('error', 'You need to be logged in to do that')
         res.redirect('back');
     }
 }
@@ -333,17 +357,21 @@ function checkPostOwnership(req, res, next){
 function checkCommentOwnership(req, res, next){
     if(req.isAuthenticated()){
         Comment.findById(req.params.comment_id, function(err, foundComment){
-            if(err){
+            // checks for error and comment with exact parameters
+            if(err || !foundComment){
+                req.flash('error', 'Comment not found')
                 res.redirect('back')
             } else {
                 if(foundComment.author.id.equals(req.user._id)){
                     next();
                 } else {
+                    req.flash('error', 'You do not have permission to do that')
                     res.redirect('back');
                 }
             }
         });
     } else {
+        req.flash('error', 'You need to be logged in to do that')
         res.redirect('back');
     }
 }
