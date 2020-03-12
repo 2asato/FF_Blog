@@ -225,6 +225,28 @@ app.post('/posts/:id/comments', isSignedIn, function(req, res){
     })
 })
 
+// comments edit route
+app.get('/posts/:id/comments/:comment_id/edit', function(req, res){
+    Comment.findById(req.params.comment_id, function(err, foundComment){
+        if(err){
+            res.redirect('back')
+        } else {
+            res.render('comments/edit', { post_id: req.params.id, comment: foundComment })
+        }
+    })
+})
+
+// comments update route
+app.put('/posts/:id/comments/:comment_id', function(req, res){
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
+        if(err){
+            res.redirect('back')
+        } else {
+            res.redirect('/posts/' + req.params.id);
+        }
+    })
+})
+
 // =============
 // AUTH ROUTES
 // =============

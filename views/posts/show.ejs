@@ -62,6 +62,8 @@
                     <% post.comments.forEach(function(comment){ %>
                         <p><%= comment.text %></p>
                         <p><strong><%= comment.author.username %></strong> -  <span><%= comment.added.toDateString() %></span> </p>
+                        <a href="/posts/<%=post._id %>/comments/<%=comment._id %>/edit" class="ui button colored-button mini compact">Edit &nbsp&nbsp<i class="edit icon"></i></a>
+
                         <div class="ui horizontal divider seperator" id="show-divider">
                                 <i class="comment outline icon"></i>                        </div>
                 

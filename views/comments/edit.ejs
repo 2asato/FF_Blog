@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+<div class="ui main segment text container outercolored new-container">
+    <div class="ui huge header">Edit Comment</div>
+    <div class="ui top attached segment">
+    <form action="/posts/<%= post_id %>/comments/<%= comment._id %>?_method=PUT" class="ui form" method="POST">
+        <!-- <div class="field required">
+            <label for="">Name</label>
+            <input type="text" name="comment[author]" placeholder="name">
+        </div> -->
+        <div class="field required">
+            <label for="">Comment</label>
+            <textarea value="<%= comment.text %>" name="comment[text]" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="ui horizontal divider seperator">
+                <i class="comment outline icon"></i>        </div>
+        <input type="submit" class="ui compact mini button">
+    </form> 
+    <a href="/posts/<%= post_id %>" class="ui button mini compact go-back">
+        Go Back 
+        <i class="arrow left icon"></i>
+    </a>
+<div class="clear"></div>
+
+
+
+    </div>   
+</div>
+
+<% include ../partials/footer %>
