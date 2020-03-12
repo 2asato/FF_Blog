@@ -30,17 +30,17 @@ body {
 }
 
 .edit-delete {
-    float: right;
+    /* float: right; */
     margin-bottom: 25px;
 }
 
-.likes-div {
+/* .likes-div {
     float: left;
     color: red;
-}
+} */
 
 #show-divider {
-    margin: 0 20px !important;
+    margin: 20px 20px !important;
 }
 
 .seperator {
@@ -64,10 +64,6 @@ body {
     width: auto;
     /* background-color: whitesmoke !important; */
     box-shadow: 0 5px 5px 5px darkgrey !important;
-}
-
-#view-comments {
-    background-color: whitesmoke;
 }
 
 #show-container, #index-container {
@@ -108,9 +104,9 @@ input[type="submit"] {
     float: right;
 }
 
-#comment-link a {
-    /* color: white; */
-}
+/* #comment-link a {
+    color: white;
+} */
 
 .comment-header {
     margin-bottom: 60px;
@@ -128,6 +124,9 @@ input[type="submit"] {
     display: inline;
 }
 
+.comment-buttons {
+    float: right;
+}
 
 
 

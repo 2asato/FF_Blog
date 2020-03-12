@@ -27,12 +27,14 @@
                 </span>
         
         </div>
-        <div class="likes-div">
+        <!-- <div class="likes-div">
             
-            <a class="ui colored-button button likes mini compact">
+            <a class="ui colored-button button likes mini compact" id="likes">
                     Like &nbsp&nbsp
                     <i class="thumbs up outline icon"></i>
                 </a>
+                
+   
 
                 <a class="ui button likes mini compact">
                         Dislike &nbsp&nbsp
@@ -41,7 +43,7 @@
         
     
             
-        </div>
+        </div> -->
         <% } %>
 
         <div class="ui horizontal divider seperator" id="show-divider">
@@ -53,7 +55,7 @@
             <div class="comment-header">
                     <h3 class="ui header white">Comments</h3>
 
-                    <span class="ui colored-button button mini compact" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
+                    <span class="ui button mini compact" id="comment-link"><a href="/posts/<%= post._id %>/comments/new">Add Comment</a></span>
 
             </div>
             <div class="ui top attached segment" id="view-comments">
