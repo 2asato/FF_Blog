@@ -124,6 +124,10 @@ input[type="submit"] {
     clear: both;
 }
 
+#delete-button {
+    display: inline;
+}
+
 
 
 
