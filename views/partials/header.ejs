@@ -19,7 +19,7 @@
                         <a href="/signin" class="ui item">Sign In</a>
                         <a href="/signup" class="ui item">Sign Up</a>
                     <% } else { %>
-                        <a href="">Signed In As <%= currentUser.username %></a>
+                        <a class="ui item">Hi <%= currentUser.username %></a>
                         <a href="/signout" class="ui item">Sign Out</a>
                     <% } %>
                   </div>

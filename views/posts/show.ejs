@@ -62,10 +62,13 @@
                     <% post.comments.forEach(function(comment){ %>
                         <p><%= comment.text %></p>
                         <p><strong><%= comment.author.username %></strong> -  <span><%= comment.added.toDateString() %></span> </p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+
                         <a href="/posts/<%=post._id %>/comments/<%= comment._id %>/edit" class="ui button colored-button mini compact">Edit &nbsp&nbsp<i class="edit icon"></i></a>
                         <form class="delete-form" action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" id="delete-button">
                             <button class="ui button mini compact">Delete &nbsp&nbsp <i class="trash alternate outline icon"></i></button>
                         </form>
+                        <% } %>
 
                         <div class="ui horizontal divider seperator" id="show-divider">
                                 <i class="comment outline icon"></i>                        </div>
