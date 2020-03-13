@@ -19,7 +19,7 @@ var postRoutes = require('./routes/posts'),
     linkRoutes = require('./routes/links'),
     authRoutes = require('./routes/index')
 
-// seedDB();
+seedDB();
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
