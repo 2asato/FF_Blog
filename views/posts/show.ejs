@@ -16,6 +16,28 @@
                 <p>Submitted By <%= post.author.username %></p>
             </em>
         </div>
+        <div class="likes-div">
+                <form action="/posts/<%= post._id %>/like" method="POST">
+                    <div>
+                        <% if(currentUser && post.likes.some(function(like){
+                            return like.equals(currentUser._id)
+                        })) {%>
+                        <button class="ui button mini compact">
+                            <i class="thumbs up outline icon"></i> Liked (<%= post.likes.length %>)
+                        </button>
+                        <% } else { %>
+                            <button class="ui button mini compact">
+                                    <i class="thumbs up outline icon"></i> Like (<%= post.likes.length %>)
+                            </button>
+                            <% } %>
+                    </div>
+                </form>
+                                
+            
+        
+                
+            </div>
+
         <% if(currentUser && post.author.id.equals(currentUser._id)){ %>
         <div class="edit-delete">
                 <a href="/posts/<%= post._id %>/edit" class="ui button colored-button mini compact">Edit &nbsp&nbsp<i class="edit icon"></i></a>
@@ -46,30 +68,6 @@
         </div> -->
         <% } %>
 
-        <div class="likes-div">
-                <form action="/posts/<%= post._id %>/like" method="POST">
-                    <div>
-                        <% if(currentUser && post.likes.some(function(like){
-                            return like.equals(currentUser._id)
-                        })) {%>
-                        <button>
-                            <i class="thumbs up outline icon"></i> Liked (<%= post.likes.length %>)
-                        </button>
-                        <% } else { %>
-                            <button>
-                                    <i class="thumbs up outline icon"></i> Like (<%= post.likes.length %>)
-                            </button>
-                            <% } %>
-                            <button type="button" class="" data-toggle="modal" data-target="#postLikes" >See more details
-    
-                            </button>
-                    </div>
-                </form>
-                                
-            
-        
-                
-            </div>
 
         <div class="ui horizontal divider seperator" id="show-divider">
                 <i class="football ball icon brown"></i>
