@@ -89,7 +89,8 @@ app.post('/posts', isSignedIn, function(req, res){
             // save post
             newPost.save();
             console.log(newPost);
-            
+            req.flash('success', 'Post created')
+
             res.redirect('/posts')
         }
     })
@@ -134,6 +135,8 @@ app.put("/posts/:id", checkPostOwnership, function(req, res) {
         if(err){
             res.redirect('/posts')
         } else {
+            req.flash('success', 'Post edited')
+
             res.redirect('/posts/' + req.params.id);
         }
     })
@@ -308,9 +311,11 @@ app.get('/signin', function(req, res){
 // handle sign in logic
 app.post('/signin', passport.authenticate('local',
     {
+        successFlash:   'Welcome back',
         successRedirect: '/posts',
         failureRedirect: '/signup'
     }), function(req, res){
+
 })
 
 // sign out route
