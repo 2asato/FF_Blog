@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router(),
     Post = require('../models/post'),
-    Comment = require('../models/comment')
+    Comment = require('../models/comment'),
+    middleware = require('../middleware')
 
 
 
@@ -10,7 +11,7 @@ var express = require('express'),
 // ================
 
 // new comment route
-router.get('/posts/:id/comments/new', isSignedIn, function(req, res){
+router.get('/posts/:id/comments/new', middleware.isSignedIn, function(req, res){
     // find post by id
     Post.findById(req.params.id, function(err, post){
         if(err){
@@ -23,7 +24,7 @@ router.get('/posts/:id/comments/new', isSignedIn, function(req, res){
 })
 
 // create comment route
-router.post('/posts/:id/comments', isSignedIn, function(req, res){
+router.post('/posts/:id/comments', middleware.isSignedIn, function(req, res){
     // lookup posts
     Post.findById(req.params.id, function(err, post){
         if(err){
@@ -55,7 +56,7 @@ router.post('/posts/:id/comments', isSignedIn, function(req, res){
 })
 
 // comments edit route
-router.get('/posts/:id/comments/:comment_id/edit', checkCommentOwnership, function(req, res){
+router.get('/posts/:id/comments/:comment_id/edit', middleware.checkCommentOwnership, function(req, res){
     Post.findById(req.params.id, function(err, foundPost){
         if(err || !foundPost){
             req.flash('error', 'No post found')
@@ -72,7 +73,7 @@ router.get('/posts/:id/comments/:comment_id/edit', checkCommentOwnership, functi
 })
 
 // comments update route
-router.put('/posts/:id/comments/:comment_id', checkCommentOwnership, function(req, res){
+router.put('/posts/:id/comments/:comment_id', middleware.checkCommentOwnership, function(req, res){
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
         if(err){
             res.redirect('back') 
@@ -83,7 +84,7 @@ router.put('/posts/:id/comments/:comment_id', checkCommentOwnership, function(re
 })
 
 // comment destroy route
-router.delete('/posts/:id/comments/:comment_id', checkCommentOwnership, function(req, res){
+router.delete('/posts/:id/comments/:comment_id', middleware.checkCommentOwnership, function(req, res){
     Comment.findByIdAndRemove(req.params.comment_id, function(err){
         if(err){
             res.redirect('back')
@@ -94,38 +95,6 @@ router.delete('/posts/:id/comments/:comment_id', checkCommentOwnership, function
     })
 })
 
-// MIDDLEWARE
-// checks if user is signed in
-function isSignedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    req.flash('error', 'You need to be logged in to do that');
-    res.redirect('/signin');
-}
 
-
-// checks if user/comments are associated
-function checkCommentOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Comment.findById(req.params.comment_id, function(err, foundComment){
-            // checks for error and comment with exact parameters
-            if(err || !foundComment){
-                req.flash('error', 'Comment not found')
-                res.redirect('back')
-            } else {
-                if(foundComment.author.id.equals(req.user._id)){
-                    next();
-                } else {
-                    req.flash('error', 'You do not have permission to do that')
-                    res.redirect('back');
-                }
-            }
-        });
-    } else {
-        req.flash('error', 'You need to be logged in to do that')
-        res.redirect('back');
-    }
-}
 
 module.exports = router

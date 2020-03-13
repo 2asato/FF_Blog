@@ -63,25 +63,6 @@ app.use(linkRoutes);
 app.use(authRoutes);
 
 
-
-
-
-
-
-
-// middleware
-
-
-
-
-
-
-
-
-
-
-
-
 // connect to server
 app.listen(5000, function(){
     console.log('FF Blog server has started on port 5000');
