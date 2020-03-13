@@ -46,6 +46,31 @@
         </div> -->
         <% } %>
 
+        <div class="likes-div">
+                <form action="/posts/<%= post._id %>/like" method="POST">
+                    <div>
+                        <% if(currentUser && post.likes.some(function(like){
+                            return like.equals(currentUser._id)
+                        })) {%>
+                        <button>
+                            <i class="thumbs up outline icon"></i> Liked (<%= post.likes.length %>)
+                        </button>
+                        <% } else { %>
+                            <button>
+                                    <i class="thumbs up outline icon"></i> Like (<%= post.likes.length %>)
+                            </button>
+                            <% } %>
+                            <button type="button" class="" data-toggle="modal" data-target="#postLikes" >See more details
+    
+                            </button>
+                    </div>
+                </form>
+                                
+            
+        
+                
+            </div>
+
         <div class="ui horizontal divider seperator" id="show-divider">
                 <i class="football ball icon brown"></i>
         </div>

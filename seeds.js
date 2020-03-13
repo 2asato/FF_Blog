@@ -27,40 +27,40 @@ var data = [
 
 function seedDB(){
     // Remove all posts
-    Post.deleteMany({}, function(err){
-        if(err){
-            console.log(err);
+    // Post.deleteMany({}, function(err){
+    //     if(err){
+    //         console.log(err);
             
-        }
-        console.log('removed posts!');
-        // data.forEach(function(seed){
-        //     Post.create(seed, function(err, post){
-        //         if(err){
-        //             console.log(err);
+    //     }
+        // console.log('removed posts!');
+        data.forEach(function(seed){
+            Post.create(seed, function(err, post){
+                if(err){
+                    console.log(err);
                     
-        //         } else {
-        //             console.log('added a post');
-        //             // create a comment
-        //             Comment.create(
-        //                 {
-        //                     text: 'FOOTBALL RULES!!!',
-        //                     author: 'Odoyle',
-        //                 }, function(err, comment){
-        //                     if(err){
-        //                         console.log(err);
+                } else {
+                    console.log('added a post');
+                    // create a comment
+                    // Comment.create(
+                    //     {
+                    //         text: 'FOOTBALL RULES!!!',
+                    //         author: 'Odoyle',
+                    //     }, function(err, comment){
+                    //         if(err){
+                    //             console.log(err);
                             
-        //                     } else {
-        //                         post.comments.push(comment);
-        //                         post.save();
-        //                         console.log('Created new comment');
+                    //         } else {
+                    //             post.comments.push(comment);
+                    //             post.save();
+                    //             console.log('Created new comment');
                             
-        //                 }
-        //             })
-        //         }
-        //     })
-        // })
+                    //     }
+                    // })
+                }
+            })
+        })
         
-    })
+//     })
 }
 
 module.exports = seedDB;

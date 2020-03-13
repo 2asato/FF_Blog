@@ -6,7 +6,10 @@
         <div class="ui list">
             <% links.forEach(function(link){ %>
                 <div class="item">
-                        <img src="<%= link.image %>" alt="" srcset="" class="ui avatar image">
+                        <div>
+                                <img src="<%= link.image %>" alt="" srcset="" class="ui avatar image">
+
+                        </div>
                         <div class="content">
                             <div class="header">
                                 <a href="<%= link.site %>"><%= link.name %></a>
@@ -18,7 +21,7 @@
                                 <p><%= link.description %></p>
                             </div>
                             <div class="extra">
-                                <p>Visit site<a href="<%= link.site %>"><i class="right chevron icon red"></i></a></p>
+                                <a href="<%= link.site %>"><p>Visit site <i class="right chevron icon red"></i></p></a>
                             </div>
                         </div>
         

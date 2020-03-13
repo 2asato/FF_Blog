@@ -14,7 +14,7 @@ var express = require('express'),
     User = require('./models/user'),
     seedDB = require('./seeds')
 
-seedDB();
+// seedDB();
 
 // config mongoose
 mongoose.connect('mongodb://localhost/ff_blog', {
@@ -105,7 +105,7 @@ app.get('/posts/new', isSignedIn, function(req, res){
 
 // show route
 app.get('/posts/:id', function(req, res){
-    Post.findById(req.params.id).populate('comments').exec(function(err, foundPost){
+    Post.findById(req.params.id).populate('comments likes').exec(function(err, foundPost){
         // checks for error and post with exact parameters
         if(err || !foundPost){
             req.flash('error', 'Post not found')
@@ -151,6 +151,34 @@ app.delete('/posts/:id', checkPostOwnership, function(req, res) {
             req.flash('success', 'Post deleted')
             res.redirect('/posts')
         }
+    })
+})
+
+// Post Like Route
+app.post('/posts/:id/like', isSignedIn, function(req, res){
+    Post.findById(req.params.id, function(err, foundPost){
+        if(err){
+            console.log(err);
+            return res.redirect('/posts');
+        }
+        // check if user id exists in foundPost.likes
+        var foundUserLike = foundPost.likes.some(function(like){
+            return like.equals(req.user._id);
+        });
+        if(foundUserLike){
+            // user already liked, remove like
+            foundPost.likes.pull(req.user._id)
+        } else {
+            // adding new user like
+            foundPost.likes.push(req.user);
+        }
+        foundPost.save(function(err){
+            if(err){
+                console.log(err);
+                return res.redirect('/posts');
+            }
+            return res.redirect('/posts/' + foundPost._id);
+        })
     })
 })
 

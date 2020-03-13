@@ -18,6 +18,12 @@ var postSchema = new mongoose.Schema({
         },
         username: String
     },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     created: { type: Date, default: Date.now }
 
 });
