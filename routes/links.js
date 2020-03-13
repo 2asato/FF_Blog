@@ -1,5 +1,7 @@
 var express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    Link = require('../models/link')
+
 
 
 // ========================
@@ -35,5 +37,14 @@ router.post('/links', function(req, res){
         }
     })
 })
+
+// checks if user is signed in
+function isSignedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    req.flash('error', 'You need to be logged in to do that');
+    res.redirect('/signin');
+}
 
 module.exports = router;

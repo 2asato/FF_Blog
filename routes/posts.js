@@ -1,11 +1,14 @@
 var express = require('express'),
-    router = express.Router();
+    router = express.Router()
+    Post = require('../models/post')
+    
 
 // ==================
 // BLOG POSTS
 // ==================
 
-// index routrouter.get('/posts', function(req, res){
+// index route
+router.get('/posts', function(req, res){
     Post.find({}, function(err, posts){
         if(err){
             console.log('ERRORRRRR!!!!');
@@ -14,6 +17,7 @@ var express = require('express'),
             res.render('posts/index', { posts: posts });
         }
     })
+})
 
 // create route
 router.post('/posts', isSignedIn, function(req, res){
@@ -122,5 +126,38 @@ router.post('/posts/:id/like', isSignedIn, function(req, res){
         })
     })
 })
+
+// MIDDLEWARE
+// checks if user is signed in
+function isSignedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    req.flash('error', 'You need to be logged in to do that');
+    res.redirect('/signin');
+}
+
+// checks if user/post are associated
+function checkPostOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Post.findById(req.params.id, function(err, foundPost){
+            // checks for error and foundPost with exact parameters
+            if(err || !foundPost){
+                req.flash('error', 'Post not found')
+                res.redirect('back')
+            } else {
+                if(foundPost.author.id.equals(req.user._id)){
+                    next();
+                } else {
+                    req.flash('error', 'You do not have permission to do that')
+                    res.redirect('back');
+                }
+            }
+        });
+    } else {
+        req.flash('error', 'You need to be logged in to do that')
+        res.redirect('back');
+    }
+}
 
 module.exports = router;
