@@ -148,6 +148,7 @@ app.delete('/posts/:id', checkPostOwnership, function(req, res) {
         if(err) {
             res.redirect('/posts')
         } else {
+            req.flash('success', 'Post deleted')
             res.redirect('/posts')
         }
     })
@@ -182,6 +183,7 @@ app.post('/links', function(req, res){
         if(err){
             res.render('links/new');
         } else {
+            req.flash('success', 'New Link Succesfully Created')
             res.redirect('/links')
         }
     })
