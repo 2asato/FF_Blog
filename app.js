@@ -22,10 +22,17 @@ var postRoutes = require('./routes/posts'),
 seedDB();
 
 // config mongoose
-mongoose.connect('mongodb://localhost/ff_blog', {
+mongoose.connect('mongodb+srv://2asato:casimiro813@cluster0-zq2cr.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
     useFindAndModify: false
+}).then(() => {
+    console.log('connected to DB');
+    
+}).catch(err => {
+    console.log('ERROR', err.message);
+    
 });
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -69,7 +76,7 @@ app.use(authRoutes);
     
 // })
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
