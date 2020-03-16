@@ -45,7 +45,8 @@ router.post('/signin', passport.authenticate('local',
     {
         successFlash:   'Welcome back',
         successRedirect: '/posts',
-        failureRedirect: '/signup'
+        failureRedirect: '/signup',
+        failureFlash: 'Please sign up!'
     }), function(req, res){
 
 })
