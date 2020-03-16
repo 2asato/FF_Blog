@@ -19,10 +19,10 @@ var postRoutes = require('./routes/posts'),
     linkRoutes = require('./routes/links'),
     authRoutes = require('./routes/index')
 
-seedDB();
+// seedDB();
 
 // config mongoose
-mongoose.connect('mongodb+srv://2asato:casimiro813@cluster0-zq2cr.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://2asato:Casimiro813!@cluster0-jckeb.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -76,7 +76,7 @@ app.use(authRoutes);
     
 // })
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 2000;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
