@@ -4,7 +4,7 @@
     <div class="ui huge header">Favorite FF Links</div>
     <div class="ui top attached segment">
         <div class="ui list">
-            <% links.forEach(function(link){ %>
+            <% links.reverse().forEach(function(link){ %>
                 <div class="item">
                         <div>
                                 <img src="<%= link.image %>" alt="" srcset="" class="ui avatar image">

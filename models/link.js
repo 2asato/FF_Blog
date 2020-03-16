@@ -6,6 +6,7 @@ var linkSchema = new mongoose.Schema({
     site: String,
     description: String,
     image: String,
+    
     added: { type: Date, default: Date.now }
 })
 

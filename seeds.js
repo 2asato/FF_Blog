@@ -37,6 +37,7 @@ var data = [
     }
 ]
 
+
 function seedDB(){
     // Remove all posts
     // Post.deleteMany({}, function(err){
