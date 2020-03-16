@@ -25,7 +25,7 @@ router.post('/signup', function(req, res){
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             req.flash('error', err.message);
-            console.log('this is what im looking for ' + err.message);
+
             return res.redirect('signup');
         }
         passport.authenticate('local')(req, res, function(){
