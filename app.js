@@ -22,7 +22,7 @@ var postRoutes = require('./routes/posts'),
 seedDB();
 
 // config mongoose
-mongoose.connect('mongodb+srv://2asato:Casimiro813!@cluster0-jckeb.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://2asato:Casimiro813!@cluster0-jckeb.mongodb.net/ff_blog?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
