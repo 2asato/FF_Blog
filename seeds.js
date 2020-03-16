@@ -40,11 +40,11 @@ var data = [
 
 function seedDB(){
     // Remove all posts
-    // Post.deleteMany({}, function(err){
-    //     if(err){
-    //         console.log(err);
+    Post.deleteMany({}, function(err){
+        if(err){
+            console.log(err);
             
-    //     }
+        }
         console.log('removed posts!');
         data.forEach(function(seed){
             Post.create(seed, function(err, post){
