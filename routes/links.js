@@ -54,7 +54,6 @@ router.get('/links/:link_id/edit', middleware.checkLinkOwnership, function(req, 
 router.put("/links/:link_id", middleware.checkLinkOwnership, function(req, res) {
     Link.findByIdAndUpdate(req.params.link_id, req.body.link, function(err, updatedLink) {
         if(err){
-            req.flash('failure', 'Something went wrong, please try again')
             res.redirect('/links')
         } else {
             req.flash('success', 'Link edited')
