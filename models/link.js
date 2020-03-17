@@ -6,7 +6,7 @@ var linkSchema = new mongoose.Schema({
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Link'
+            ref: 'User'
         },
         username: String
     },

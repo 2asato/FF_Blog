@@ -28,7 +28,6 @@ router.get('/links/new', middleware.isSignedIn, function(req, res){
 
 // create links route
 router.post('/links', function(req, res){
-    req.body.link.body = req.sanitize(req.body.link.body);
     Link.create(req.body.link, function(err, newLink){
         if(err){
             res.render('links/new');

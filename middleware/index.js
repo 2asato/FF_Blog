@@ -68,6 +68,8 @@ middlewareObj.checkLinkOwnership =
 function checkLinkOwnership(req, res, next){
     if(req.isAuthenticated()){
         Link.findById(req.params.link_id, function(err, foundLink){
+            console.log(foundLink);
+            
             // checks for error and link with exact parameters
             if(err || !foundLink){
                 req.flash('error', 'Link not found')
