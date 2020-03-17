@@ -1,6 +1,6 @@
 var Post = require('../models/post'),
     Comment = require('../models/comment'),
-    Link = require('../models/link')
+    Link = require('../models/link'),
     middlewareObj = {};
 
 // MIDDLEWARE

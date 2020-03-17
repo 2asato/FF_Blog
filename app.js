@@ -19,7 +19,7 @@ var postRoutes = require('./routes/posts'),
     linkRoutes = require('./routes/links'),
     authRoutes = require('./routes/index')
 
-// seedDB();
+seedDB();
 
 // config mongoose
 mongoose.connect('mongodb+srv://2asato:Casimiro813!@cluster0-jckeb.mongodb.net/ff_blog?retryWrites=true&w=majority', {
