@@ -6,7 +6,13 @@ var linkSchema = new mongoose.Schema({
     site: String,
     description: String,
     image: String,
-    
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        username: String
+    },
     added: { type: Date, default: Date.now }
 })
 

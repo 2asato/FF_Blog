@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+<div class="ui main segment text container outercolored">
+    <div class="ui huge header">Edit Link</div>
+    <div class="ui top attached segment">
+    <form action="/links/<%= link._id %>?_method=PUT" class="ui form" method="POST">
+        <div class="field required">
+            <label for="">Name</label>
+            <input type="text" name="link[name]" value="<%= link.name %>">
+        </div>
+        <div class="field required">
+            <label for="">URL</label>
+            <input type="text" name="link[site]" value="<%= link.site %>">
+        </div>
+        <div class="field required">
+            <label for="">Description</label>
+            <textarea name="link[description]" id="" cols="30" rows="10" value="<%= link.description %>"></textarea>
+        </div>   
+        <div class="field">
+            <label for="">Image</label>
+            <input type="text" name="link[image]" value="<%= link.image %>">
+        </div>
+        <div class="ui horizontal divider seperator">
+                <i class="football ball icon brown"></i>
+        </div>
+        <input type="submit" class="ui compact mini button">
+        <a href="/links" class="ui button mini compact go-back">
+            Go Back 
+            <i class="arrow left icon"></i>
+        </a>
+    
+    </form> 
+<div class="clear"></div>
+
+    </div>   
+</div>
+
+<% include ../partials/footer %>

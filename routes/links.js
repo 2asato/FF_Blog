@@ -39,5 +39,42 @@ router.post('/links', function(req, res){
     })
 })
 
+// links edit route
+router.get('/links/:link_id/edit', middleware.checkLinkOwnership, function(req, res) {
+    Link.findById(req.params.link_id, function(err, foundLink) {
+        if(err) {
+            res.redirect('/links')
+        } else {
+            res.render('links/edit', { link: foundLink })
+        }
+    })
+})
+
+// links update route
+router.put("/links/:link_id", middleware.checkLinkOwnership, function(req, res) {
+    Link.findByIdAndUpdate(req.params.link_id, req.body.link, function(err, updatedLink) {
+        if(err){
+            req.flash('failure', 'Something went wrong, please try again')
+            res.redirect('/links')
+        } else {
+            req.flash('success', 'Link edited')
+
+            res.redirect('/links');
+        }
+    })
+});
+
+
+// links destroy route
+router.delete('/links/:link_id', middleware.checkLinkOwnership, function(req, res){
+    Link.findByIdAndRemove(req.params.link_id, function(err){
+        if(err){
+            res.redirect('back')
+        } else {
+            req.flash('success', 'Link deleted')
+            res.redirect('/links')
+        }
+    })
+})
 
 module.exports = router;

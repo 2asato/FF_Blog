@@ -1,5 +1,6 @@
 var Post = require('../models/post'),
     Comment = require('../models/comment'),
+    Link = require('../models/link')
     middlewareObj = {};
 
 // MIDDLEWARE
@@ -49,6 +50,30 @@ function checkCommentOwnership(req, res, next){
                 res.redirect('back')
             } else {
                 if(foundComment.author.id.equals(req.user._id)){
+                    next();
+                } else {
+                    req.flash('error', 'You do not have permission to do that')
+                    res.redirect('back');
+                }
+            }
+        });
+    } else {
+        req.flash('error', 'You need to be logged in to do that')
+        res.redirect('back');
+    }
+}
+
+// checks if user/links are associated
+middlewareObj.checkLinkOwnership =
+function checkLinkOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Link.findById(req.params.link_id, function(err, foundLink){
+            // checks for error and link with exact parameters
+            if(err || !foundLink){
+                req.flash('error', 'Link not found')
+                res.redirect('back')
+            } else {
+                if(foundLink.author.id.equals(req.user._id)){
                     next();
                 } else {
                     req.flash('error', 'You do not have permission to do that')

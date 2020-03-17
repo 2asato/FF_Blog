@@ -23,6 +23,14 @@
                             <div class="extra">
                                 <a href="<%= link.site %>"><p>Visit site <i class="right chevron icon red"></i></p></a>
                             </div>
+                            <div id="links-edit-delete">
+                                    <a href="/links/<%=link._id %>/edit" class="ui button colored-button mini compact">Edit &nbsp&nbsp<i class="edit icon"></i></a>
+                                    <form class="delete-form" action="/links/<%= link._id %>?_method=DELETE" method="POST" id="delete-button">
+                                        <button class="ui button mini compact">Delete &nbsp&nbsp <i class="trash alternate outline icon"></i></button>
+                                    </form>
+        
+                            </div>
+    
                         </div>
         
                     </div>      
