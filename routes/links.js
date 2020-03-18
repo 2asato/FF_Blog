@@ -39,7 +39,7 @@ router.post('/links', function(req, res){
 })
 
 // links edit route
-router.get('/links/:link_id/edit', middleware.checkLinkOwnership, function(req, res) {
+router.get('/links/:link_id/edit', function(req, res) {
     Link.findById(req.params.link_id, function(err, foundLink) {
         if(err) {
             res.redirect('/links')
@@ -50,7 +50,7 @@ router.get('/links/:link_id/edit', middleware.checkLinkOwnership, function(req, 
 })
 
 // links update route
-router.put("/links/:link_id", middleware.checkLinkOwnership, function(req, res) {
+router.put("/links/:link_id", function(req, res) {
     Link.findByIdAndUpdate(req.params.link_id, req.body.link, function(err, updatedLink) {
         if(err){
             res.redirect('/links')
@@ -64,7 +64,7 @@ router.put("/links/:link_id", middleware.checkLinkOwnership, function(req, res) 
 
 
 // links destroy route
-router.delete('/links/:link_id', middleware.checkLinkOwnership, function(req, res){
+router.delete('/links/:link_id', function(req, res){
     Link.findByIdAndRemove(req.params.link_id, function(err){
         if(err){
             res.redirect('back')
