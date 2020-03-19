@@ -10,14 +10,20 @@ var express = require('express'),
 
 // index route
 router.get('/posts', function(req, res){
-    Post.find({}, function(err, posts){
-        if(err){
-            console.log('ERRORRRRR!!!!');
-            
-        } else {
-            res.render('posts/index', { posts: posts });
-        }
-    })
+    var perPage = 8;
+    var pageQuery = parseInt(req.query.page);
+    var pageNumber = pageQuery ? pageQuery : 1;
+    Post.find({}).skip((perPage * pageNumber) - Campground.count().exec(function(err, count)
+    if(err){
+        console.log(err);
+        
+    } else {
+        res.render('posts/index', {
+            posts: allPosts,
+            current: pageNumber,
+            pages: Math.ceil(count/perPage)
+        })
+    }))
 })
 
 // create route
