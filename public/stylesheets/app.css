@@ -138,6 +138,10 @@ input[type="submit"] {
     margin-top: 10px;
 }
 
+#pagination {
+    margin: 0 auto;
+    margin-bottom: 2%;
+}
 
 
 

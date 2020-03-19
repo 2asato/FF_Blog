@@ -10,21 +10,23 @@ var express = require('express'),
 
 // index route
 router.get('/posts', function(req, res){
-    var perPage = 8;
+    var perPage = 6;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
-    Post.find({}).skip((perPage * pageNumber) - Campground.count().exec(function(err, count)
-    if(err){
-        console.log(err);
-        
-    } else {
-        res.render('posts/index', {
-            posts: allPosts,
-            current: pageNumber,
-            pages: Math.ceil(count/perPage)
-        })
-    }))
-})
+    Post.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function (err, allPosts) {
+        Post.countDocuments().exec(function (err, count) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("posts/index", {
+                    posts: allPosts,
+                    current: pageNumber,
+                    pages: Math.ceil(count / perPage)
+                });
+            }
+        });
+    });
+});
 
 // create route
 router.post('/posts', middleware.isSignedIn, function(req, res){
