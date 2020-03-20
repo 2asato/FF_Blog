@@ -10,7 +10,7 @@ var express = require('express'),
 
 // index route
 router.get('/posts', function(req, res){
-    var perPage = 6;
+    var perPage = 5;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
     Post.find({}).sort({_id: -1}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function (err, allPosts) {
